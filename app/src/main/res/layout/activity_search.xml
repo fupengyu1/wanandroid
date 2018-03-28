@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wanandroid.com.activity.SearchActivity">
+
+    <!--搜索框  弃用-->
+    <!-- Must be last for right layering display -->
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/chuck_status_300"
+            app:titleTextColor="@color/white" />
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+    <android.support.v7.widget.Toolbar
+        android:gravity="bottom"
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:id="@+id/ll_search_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_search_title"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="10">
+
+                <EditText
+                    android:id="@+id/et_search_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/et_search_bg"
+                    android:drawableLeft="@mipmap/search_48"
+                    android:drawablePadding="5dp"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="3dp"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_search_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:src="@mipmap/delete_fill_48" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_close_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_share_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="分享"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_hot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_toolbar"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="30px">
+
+        <TextView
+            android:id="@+id/tv_search_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热门搜索"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.wanandroid.com.utils.AutoLinefeedLayout
+            android:id="@+id/auto_search_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_search_hot" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

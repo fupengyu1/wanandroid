@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<RelativeLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/rl_search"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@color/chuck_status_300"-->
+        <!--android:gravity="center_vertical">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Search"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="20sp" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:src="@drawable/chuck_ic_search_white_24dp" />-->
+
+    <!--</RelativeLayout>-->
+
+    <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:visibility="gone"
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/rl_search"
+        android:clickable="true" />
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/banner"-->
+    <!--android:text="HomeFragment" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/banner" />
+
+    <include layout="@layout/title_bar_home"/>
+
+</RelativeLayout>
