@@ -3,16 +3,22 @@ package com.wanandroid.com.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
+import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.wanandroid.com.R;
 import com.wanandroid.com.base.BaseFragment;
 import com.wanandroid.com.base.BasePresenter;
+import com.wanandroid.com.utils.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,6 +34,10 @@ public class UserFragment extends BaseFragment {
     ImageView parallax;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.user_NestedScrollView)
+    NestedScrollView userNestedScrollView;
+    @Bind(R.id.rl_user_header)
+    RelativeLayout rlUserHeader;
     private int mOffset = 0;
     private int mScrollY = 0;
 
@@ -48,7 +58,7 @@ public class UserFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        ImmersionBar.setTitleBar(getActivity(), toolbar);
+        ImmersionBar.setTitleBar(getActivity(), toolbar);
     }
 
     @Override
@@ -94,6 +104,27 @@ public class UserFragment extends BaseFragment {
 //            }
         });
 
+        userNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+
+            private int lastScrollY = 0;
+            private int h = DensityUtil.dp2px(200);
+            private int color = ContextCompat.getColor(UIUtils.getContext(), R.color.colorPrimary) & 0x00ffffff;
+
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (lastScrollY < h) {
+                    scrollY = Math.min(h, scrollY);
+                    mScrollY = scrollY > h ? h : scrollY;
+                    rlUserHeader.setAlpha(1f * mScrollY / h);
+                    toolbar.setBackgroundColor(((255 * mScrollY / h) << 24) | color);
+                    parallax.setTranslationY(mOffset - mScrollY);
+                }
+                lastScrollY = scrollY;
+            }
+        });
+//        toolbar.setAlpha(0);
+        rlUserHeader.setAlpha(0);
+        toolbar.setBackgroundColor(0);
     }
 
     @Override

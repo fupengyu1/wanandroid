@@ -50,6 +50,9 @@ public class LoadingUtils {
     }
 
     public static void hideLoadingView() {
+        if (dialog == null) {
+            return;
+        }
         dialog.dismiss();
     }
 }

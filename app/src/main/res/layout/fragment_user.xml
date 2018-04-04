@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@color/white"
-        app:srlDragRate="0.85"
+        app:srlDragRate="0.75"
         app:srlEnableLoadMore="true"
         app:srlEnablePreviewInEditMode="true"
         app:srlEnablePureScrollMode="true">
@@ -46,6 +46,7 @@
         <!--app:srlAccentColor="@android:color/white" />-->
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/user_NestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -73,6 +74,7 @@
                             android:layout_marginTop="200dp">
 
                             <RelativeLayout
+                                android:id="@+id/rl_user_personal_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="40dp"
@@ -164,19 +166,363 @@
                             </RelativeLayout>
                         </RelativeLayout>
 
+                        <!--<TextView-->
+                        <!--android:id="@+id/tv_user_fengexian"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="10dp"-->
+                        <!--android:layout_below="@+id/rl_user_personal"-->
+                        <!--android:background="@color/gray" />-->
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/rl_user_personal">
+                            android:layout_below="@+id/rl_user_personal"
+                            android:background="@color/white"
+                            android:paddingTop="5dp">
 
                             <TextView
+                                android:id="@+id/tv_user_fengexian"
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:background="@color/gray" />
 
-                        </RelativeLayout>
+                            <!--发布动态正文内容-->
+                            <RelativeLayout
+                                android:id="@+id/rl_user_fabudongtai_all"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_user_fengexian"
+                                android:visibility="visible">
 
+                                <!--发布动态标题和查看全部-->
+                                <RelativeLayout
+                                    android:id="@+id/rl_user_fabudongtai"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        android:id="@+id/tv_user_fabudongtai"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="发布动态"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_user_chakanquanbu"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:drawableRight="@mipmap/more_arrow"
+                                        android:text="查看全部" />
+                                </RelativeLayout>
+
+                                <!--分割线-->
+                                <TextView
+                                    android:id="@+id/tv_user_fengexian_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_below="@+id/rl_user_fabudongtai"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="#cccccc" />
+
+                                <!--发布动态内容-->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_user_fengexian_1"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="45dp"
+                                        android:layout_marginTop="30dp"
+                                        android:gravity="center"
+                                        android:singleLine="true"
+                                        android:text="21:44"
+                                        android:textColor="@android:color/tertiary_text_dark"
+                                        android:textSize="14sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <View
+                                            android:layout_width="0.5dp"
+                                            android:layout_height="30dp"
+                                            android:background="#cccccc" />
+
+                                        <com.flyco.roundview.RoundFrameLayout
+                                            android:layout_width="45dp"
+                                            android:layout_height="45dp"
+                                            app:rv_isRadiusHalfHeight="true"
+                                            app:rv_strokeColor="#cccccc"
+                                            app:rv_strokeWidth="0.5dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_margin="10dp"
+                                                android:contentDescription="@string/app_name"
+                                                android:tint="#cccccc"
+                                                app:srcCompat="@mipmap/more" />
+                                        </com.flyco.roundview.RoundFrameLayout>
+
+                                        <View
+                                            android:layout_width="0.5dp"
+                                            android:layout_height="match_parent"
+                                            android:background="#cccccc" />
+                                    </LinearLayout>
+
+                                    <com.flyco.roundview.RoundLinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_marginTop="30dp"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        app:rv_cornerRadius="0.5dp"
+                                        app:rv_strokeColor="#cccccc"
+                                        app:rv_strokeWidth="0.5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:text="Steffen Norgaard Andersen"
+                                            android:textColor="@android:color/tertiary_text_dark"
+                                            android:textSize="17sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginTop="5dp"
+                                            android:ellipsize="end"
+                                            android:gravity="top"
+                                            android:lineSpacingExtra="5dp"
+                                            android:singleLine="false"
+                                            android:text="Lorem ipsum dolor sit amet , consecteur adipiscing elit, sed do eiusmod tempor incidi-dunt ut labore et dlore magna aliqua. Ut enim ad minim veniam, sed do eiusmod quis nostrud exrcitation."
+                                            android:textColor="@android:color/tertiary_text_dark"
+                                            android:textSize="14sp" />
+                                    </com.flyco.roundview.RoundLinearLayout>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <!--我的收藏全部内容-->
+                            <RelativeLayout
+                                android:id="@+id/rl_user_shoucang_all"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/rl_user_fabudongtai_all"
+                                android:layout_marginTop="10dp">
+                                <!--我的收藏标题-->
+                                <RelativeLayout
+                                    android:id="@+id/rl_user_shoucang"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:text="我的收藏"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:drawableRight="@mipmap/more_arrow"
+                                        android:text="查看全部" />
+                                </RelativeLayout>
+
+                                <!--分割线-->
+                                <TextView
+                                    android:id="@+id/tv_user_fengexian_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_below="@+id/rl_user_shoucang"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="#cccccc" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_user_fengexian_2">
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <TextView
+                                            android:id="@+id/tv_user_shangpinshoucang_num"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="1" />
+
+                                        <TextView
+                                            android:id="@+id/tv_user_shangpinshoucang"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/tv_user_shangpinshoucang_num"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="商品收藏" />
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <TextView
+                                            android:id="@+id/tv_user_dianpushoucang_num"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="11" />
+
+                                        <TextView
+                                            android:id="@+id/tv_user_dianpushoucang"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/tv_user_dianpushoucang_num"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="店铺收藏" />
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <TextView
+                                            android:id="@+id/tv_user_neirongshoucang_num"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="111" />
+
+                                        <TextView
+                                            android:id="@+id/tv_user_neirongshoucang"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/tv_user_neirongshoucang_num"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="商品收藏" />
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <TextView
+                                            android:id="@+id/tv_user_zuji_num"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="1" />
+
+                                        <TextView
+                                            android:id="@+id/tv_user_zuji"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/tv_user_zuji_num"
+                                            android:layout_centerHorizontal="true"
+                                            android:text="足迹" />
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <!--我的卡券全部内容-->
+                            <RelativeLayout
+                                android:id="@+id/rl_user_wodekaquan_all"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/rl_user_shoucang_all"
+                                android:layout_marginTop="10dp">
+                                <!--我的卡券标题-->
+                                <RelativeLayout
+                                    android:id="@+id/rl_user_wodekaquan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="我的卡券"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:drawableRight="@mipmap/more_arrow"
+                                        android:text="查看全部" />
+                                </RelativeLayout>
+
+                                <!--分割线-->
+                                <TextView
+                                    android:id="@+id/tv_user_fengexian_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_below="@+id/rl_user_wodekaquan"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="#cccccc" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tv_user_fengexian_3"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@mipmap/test" />
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
                     </RelativeLayout>
                 </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -199,8 +545,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         app:contentInsetStart="0dp"
         app:layout_collapseMode="pin">
@@ -208,9 +553,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp">
 
             <RelativeLayout
+                android:id="@+id/rl_user_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
@@ -237,7 +584,7 @@
                     android:layout_toRightOf="@+id/toolbar_avatar"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="title"
+                    android:text="nickname"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
             </RelativeLayout>

@@ -58,6 +58,7 @@ public class SearchAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BannerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("url", item.getLink());
                 context.startActivity(intent);
             }

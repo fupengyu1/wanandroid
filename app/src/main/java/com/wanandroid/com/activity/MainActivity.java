@@ -2,6 +2,7 @@ package com.wanandroid.com.activity;
 
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -20,9 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.main_viewpager)
     ViewPager mainViewpager;
@@ -34,7 +36,6 @@ public class MainActivity extends BaseActivity {
     TextView mianTab2;
     @Bind(R.id.mian_tab_3)
     TextView mianTab3;
-
 
     private List<Fragment> fragments = new ArrayList<>();
     private int mCurrentPage = 0;
@@ -132,5 +133,17 @@ public class MainActivity extends BaseActivity {
                 setTabColor(mianTab3, 3);
                 break;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

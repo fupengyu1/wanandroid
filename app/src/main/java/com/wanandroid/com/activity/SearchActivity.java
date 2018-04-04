@@ -302,6 +302,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     @Override
     public void getHotKeySuccess(List<HotKeyBean> data) {
 
+        //关闭Loading动画
         LoadingUtils.hideLoadingView();
 
         autoSearchHot.removeAllViews();
