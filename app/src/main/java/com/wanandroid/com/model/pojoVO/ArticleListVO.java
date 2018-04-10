@@ -4,6 +4,7 @@ package com.wanandroid.com.model.pojoVO;
 import com.wanandroid.com.model.pojo.ArticleBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,6 +81,9 @@ public class ArticleListVO implements Serializable {
     }
 
     public List<ArticleBean> getDatas() {
+        if (datas == null) {
+            return new ArrayList<>();
+        }
         return datas;
     }
 

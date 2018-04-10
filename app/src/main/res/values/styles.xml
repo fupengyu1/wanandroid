@@ -37,7 +37,9 @@
         <item name="colorPrimary">#ffffff</item>
     </style>
 
-    <style name="CommonActivityTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="CommonActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
     <style name="MaterialSearchViewStyle">
         <!-- Background for the search bar -->

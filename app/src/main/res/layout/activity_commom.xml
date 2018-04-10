@@ -8,20 +8,25 @@
         android:id="@+id/tv_common_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="这里是共用activity"
-        android:visibility="gone" />
-
-    <GridView
-        android:id="@+id/gv_images"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:layout_below="@+id/tl_common"
-        android:gravity="center"
-        android:horizontalSpacing="5dp"
-        android:numColumns="3"
-        android:verticalSpacing="5dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="这里是共用activity"
+        android:visibility="visible" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcl_common"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_common_tag" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcl_common_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rcl_common" />
+
+    <!--toolbar-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_common"
         android:layout_width="match_parent"

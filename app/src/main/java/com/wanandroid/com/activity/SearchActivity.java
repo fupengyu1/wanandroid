@@ -98,6 +98,11 @@ public class SearchActivity extends BaseSwipeBackActivity<SearchView, SearchPres
     }
 
     @Override
+    protected void testTransferee() {
+
+    }
+
+    @Override
     public void initView() {
         super.initView();
 

@@ -36,8 +36,7 @@
             android:name=".activity.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".activity.CommonActivity"
-            android:theme="@style/CommonActivityTheme"/>
+        <activity android:name=".activity.CommonActivity" />
         <activity android:name=".activity.SwipeBackDemoActivity"></activity>
     </application>
 

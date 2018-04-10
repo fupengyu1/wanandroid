@@ -44,6 +44,11 @@ public class BannerActivity extends BaseSwipeBackActivity<CommonWebView, WebView
     }
 
     @Override
+    protected void testTransferee() {
+
+    }
+
+    @Override
     public void init() {
         super.init();
         url = getIntent().getStringExtra("url");
