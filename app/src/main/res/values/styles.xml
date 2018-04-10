@@ -37,6 +37,8 @@
         <item name="colorPrimary">#ffffff</item>
     </style>
 
+    <style name="CommonActivityTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
     <style name="MaterialSearchViewStyle">
         <!-- Background for the search bar -->
         <item name="searchBackground">@color/theme_primary</item>
@@ -77,6 +79,13 @@
     <!--TabLayout-->
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <!--dialog-->
+    <style name="dialog" parent="AlertDialog.AppCompat.Light">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

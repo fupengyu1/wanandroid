@@ -1,7 +1,6 @@
 package com.wanandroid.com.presenter;
 
 import com.google.gson.Gson;
-import com.orhanobut.logger.Logger;
 import com.wanandroid.com.api.WanService;
 import com.wanandroid.com.base.BasePresenter;
 import com.wanandroid.com.helper.rxjavahelper.RxObserver;
@@ -59,7 +58,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
                         Gson gson = new Gson();
                         String s = gson.toJson(articleListVO);
 
-                        Logger.e("s == " + s);
+//                        Logger.e("s == " + s);
 
                     }
 

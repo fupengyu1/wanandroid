@@ -1,7 +1,7 @@
 package com.wanandroid.com.utils;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -19,22 +19,25 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 public class LoadingUtils {
 
+    public static boolean isShowLoading = false;
+
     private static Dialog dialog;
 
     /**
-     * @param context 上下文
+     * @param activity 上下文
      * @param msg     显示内容
      */
-    public static void showLoadingView(Context context, String msg) {
+    public static void showLoadingView(Activity activity, String msg) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.loading_view, null);
+        View view = LayoutInflater.from(activity).inflate(R.layout.loading_view, null);
         AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) view.findViewById(R.id.AVLoadingIndicatorView);
         TextView id_tv_loading_dialog_text = (TextView) view.findViewById(R.id.id_tv_loading_dialog_text);
 
-        dialog = new Dialog(context);
+        dialog = new Dialog(activity);
         dialog.setCancelable(false);
         dialog.setContentView(view, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
 
         id_tv_loading_dialog_text.setText(msg);
@@ -50,6 +53,7 @@ public class LoadingUtils {
     }
 
     public static void hideLoadingView() {
+
         if (dialog == null) {
             return;
         }

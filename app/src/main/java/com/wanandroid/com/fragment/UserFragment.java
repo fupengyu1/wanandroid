@@ -1,5 +1,6 @@
 package com.wanandroid.com.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -19,9 +21,11 @@ import com.wanandroid.com.R;
 import com.wanandroid.com.base.BaseFragment;
 import com.wanandroid.com.base.BasePresenter;
 import com.wanandroid.com.utils.UIUtils;
+import com.wanandroid.com.view.myinterface.UserFragmentListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * author: fupengyu
@@ -38,8 +42,24 @@ public class UserFragment extends BaseFragment {
     NestedScrollView userNestedScrollView;
     @Bind(R.id.rl_user_header)
     RelativeLayout rlUserHeader;
+    @Bind(R.id.iv_user_menu)
+    ImageView ivUserMenu;
+    @Bind(R.id.tv_user_chakanquanbu)
+    TextView tvUserChakanquanbu;
+    @Bind(R.id.tv_user_shangpinshoucang_num)
+    TextView tvUserShangpinshoucangNum;
+    @Bind(R.id.tv_user_zuji)
+    TextView tvUserZuji;
     private int mOffset = 0;
     private int mScrollY = 0;
+
+    private UserFragmentListener userFragmentListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        userFragmentListener = (UserFragmentListener) context;
+    }
 
     @Override
     protected BasePresenter createPresenter() {
@@ -144,5 +164,23 @@ public class UserFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+
+    @OnClick({R.id.tv_user_chakanquanbu, R.id.tv_user_shangpinshoucang_num, R.id.tv_user_zuji, R.id.iv_user_menu})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_user_chakanquanbu:
+                break;
+            case R.id.tv_user_shangpinshoucang_num:
+                break;
+            case R.id.tv_user_zuji:
+                break;
+            case R.id.iv_user_menu:
+
+                userFragmentListener.showNavigationView();
+
+                break;
+        }
     }
 }

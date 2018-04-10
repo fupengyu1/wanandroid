@@ -52,7 +52,7 @@ public class ArticleBean implements Serializable {
     }
 
     public String getTitle() {
-        return title;
+        return title == null ? "" : title;
     }
 
     public void setTitle(String title) {
@@ -68,7 +68,7 @@ public class ArticleBean implements Serializable {
     }
 
     public String getChapterName() {
-        return chapterName;
+        return chapterName == null ? "" : chapterName;
     }
 
     public void setChapterName(String chapterName) {
@@ -84,7 +84,7 @@ public class ArticleBean implements Serializable {
     }
 
     public String getLink() {
-        return link;
+        return link == null ? "" : link;
     }
 
     public void setLink(String link) {
@@ -92,7 +92,7 @@ public class ArticleBean implements Serializable {
     }
 
     public String getAuthor() {
-        return author;
+        return author == null ? "" : author;
     }
 
     public void setAuthor(String author) {
@@ -148,7 +148,7 @@ public class ArticleBean implements Serializable {
     }
 
     public String getNiceDate() {
-        return niceDate;
+        return niceDate == null ? "" : niceDate;
     }
 
     public void setNiceDate(String niceDate) {

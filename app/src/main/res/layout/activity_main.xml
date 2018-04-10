@@ -2,55 +2,112 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.wanandroid.com.activity.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5px"
+            android:background="@color/line" />
 
         <LinearLayout
             android:id="@+id/ll_main_bottom"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:gravity="center">
+            android:paddingTop="5dp">
 
-            <TextView
-                android:id="@+id/mian_tab_1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_main_1"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:gravity="center"
-                android:text="1111" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/mian_tab_2"
-                android:layout_width="wrap_content"
+                <com.wanandroid.com.widget.IconFontTextView
+                    android:id="@+id/iv_main_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ic_home"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/mian_tab_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="首页"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_main_2"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:gravity="center"
-                android:text="2222" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/mian_tab_3"
-                android:layout_width="wrap_content"
+                <com.wanandroid.com.widget.IconFontTextView
+                    android:id="@+id/iv_main_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ic_type"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/mian_tab_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="分类"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_main_3"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:gravity="center"
-                android:text="3333" />
+                android:orientation="vertical">
+
+                <com.wanandroid.com.widget.IconFontTextView
+                    android:id="@+id/iv_main_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ic_user"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/mian_tab_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="我的"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav"

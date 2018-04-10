@@ -10,14 +10,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wanandroid.com.R;
-import com.wanandroid.com.base.BaseActivity;
+import com.wanandroid.com.base.BaseSwipeBackActivity;
 import com.wanandroid.com.presenter.WebViewPresenter;
 import com.wanandroid.com.view.CommonWebView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class BannerActivity extends BaseActivity<CommonWebView, WebViewPresenter> implements CommonWebView {
+public class BannerActivity extends BaseSwipeBackActivity<CommonWebView, WebViewPresenter> implements CommonWebView {
     @Bind(R.id.wv_banner)
     WebView wvBanner;
     @Bind(R.id.pb_banner)

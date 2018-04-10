@@ -33,7 +33,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.orhanobut.logger.Logger;
 import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.SearchAdapter;
-import com.wanandroid.com.base.BaseActivity;
+import com.wanandroid.com.base.BaseSwipeBackActivity;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.model.pojo.HotKeyBean;
 import com.wanandroid.com.presenter.SearchPresenter;
@@ -48,7 +48,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> implements SearchView, BaseQuickAdapter.RequestLoadMoreListener {
+public class SearchActivity extends BaseSwipeBackActivity<SearchView, SearchPresenter> implements SearchView, BaseQuickAdapter.RequestLoadMoreListener {
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +168,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
         //MaterialSearchView已弃用搜索框相关
         toolbar.setTitle("Search");
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         searchView.setVoiceSearch(true);
         searchView.setCursorDrawable(R.drawable.color_cursor_white);
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
@@ -308,7 +308,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
         autoSearchHot.removeAllViews();
 
         for (int i = 0; i < data.size(); i++) {
-            View inflate = LinearLayout.inflate(SearchActivity.this, R.layout.search_hot_item, null);
+            View inflate = LinearLayout.inflate((Context) SearchActivity.this, R.layout.search_hot_item, null);
             TextView tv_hot_word = (TextView) inflate.findViewById(R.id.tv_hot_word);
             final String name = data.get(i).getName();
             tv_hot_word.setText(name);
@@ -334,7 +334,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
         LoadingUtils.hideLoadingView();
 
-        Toast.makeText(SearchActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) SearchActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -349,7 +349,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
 
         if (data == null || data.size() == 0) {
 
-            Toast.makeText(SearchActivity.this, "抱歉，没有搜索项。。。", Toast.LENGTH_SHORT).show();
+            Toast.makeText((Context) SearchActivity.this, "抱歉，没有搜索项。。。", Toast.LENGTH_SHORT).show();
 
             tvSearchHot.setVisibility(View.VISIBLE);
             autoSearchHot.setVisibility(View.VISIBLE);
@@ -366,7 +366,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     public void searchDataFail(String message) {
         //隐藏loading
         LoadingUtils.hideLoadingView();
-        Toast.makeText(SearchActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) SearchActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -385,7 +385,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
     public void loadMoreDataFail(String message) {
         //隐藏loading
         LoadingUtils.hideLoadingView();
-        Toast.makeText(SearchActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) SearchActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @OnClick({R.id.et_search_activity, R.id.iv_search_delete, R.id.tv_close_activity, R.id.tv_share_activity})
@@ -452,7 +452,7 @@ public class SearchActivity extends BaseActivity<SearchView, SearchPresenter> im
                 resources.getResourcePackageName(id) + "/" +
                 resources.getResourceTypeName(id) + "/" +
                 resources.getResourceEntryName(id);
-        Toast.makeText(this, "Uri:" + uriPath, Toast.LENGTH_SHORT).show();
+        Toast.makeText((Context) SearchActivity.this, "Uri:" + uriPath, Toast.LENGTH_SHORT).show();
         return uriPath;
     }
 

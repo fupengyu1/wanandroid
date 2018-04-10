@@ -63,7 +63,6 @@ public class WebViewPresenter extends BasePresenter<CommonWebView> {
                 super.onPageStarted(view, url, favicon);
 
                 progressBar.setVisibility(View.VISIBLE);
-                Logger.e("onPageStarted()");
 
             }
 
@@ -74,14 +73,12 @@ public class WebViewPresenter extends BasePresenter<CommonWebView> {
                 refreshLayout.setRefreshing(false);
                 progressBar.setVisibility(View.GONE);
 
-                Logger.e("onPageFinished()");
             }
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
 
-                Logger.e("onReceivedError()");
 
             }
         });
@@ -91,8 +88,6 @@ public class WebViewPresenter extends BasePresenter<CommonWebView> {
                 super.onProgressChanged(view, newProgress);
 
                 progressBar.setProgress(newProgress);//设置进度值
-
-                Logger.e("onProgressChanged()");
 
             }
 
@@ -108,6 +103,8 @@ public class WebViewPresenter extends BasePresenter<CommonWebView> {
         });
 
         webView.loadUrl(url);
+
+        Logger.e("url == " + url);
 
     }
 

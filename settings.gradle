@@ -1,1 +1,1 @@
-include ':app', ':viewspreadtranslationlibrary'
+include ':app', ':viewspreadtranslationlibrary', ':SwipeBackLibrary', ':Transferee'

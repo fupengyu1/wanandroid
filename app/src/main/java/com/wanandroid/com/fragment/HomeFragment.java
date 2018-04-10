@@ -10,12 +10,10 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -32,6 +30,7 @@ import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.model.pojo.BannerBean;
 import com.wanandroid.com.presenter.HomePresenter;
 import com.wanandroid.com.view.HomeView;
+import com.wanandroid.com.view.myinterface.HomeFragmentListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -61,6 +60,8 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     RelativeLayout rlSearch;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.iv_home_menu)
+    ImageView ivHomeMenu;
 
     private Banner banner;
 
@@ -71,10 +72,19 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     private SimpleMarqueeView marqueeView;
     private List<ArticleBean> listData = new ArrayList<>();
 
+    private HomeFragmentListener homeFragmentListener;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImmersionBar.setTitleBar(getActivity(), toolbar);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        homeFragmentListener = (HomeFragmentListener) context;
     }
 
     @Override
@@ -133,12 +143,14 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
                     tvSearch.setAlpha(alpha);
                     ivSearch.setAlpha(alpha);
+                    ivHomeMenu.setAlpha(alpha);
 
                 } else {
                     toolbar.setBackgroundColor(ColorUtils.blendARGB(Color.TRANSPARENT
                             , ContextCompat.getColor(mActivity, R.color.colorPrimary), 1));
                     tvSearch.setAlpha(1f);
                     ivSearch.setAlpha(1f);
+                    ivHomeMenu.setAlpha(1f);
                 }
                 //在Fragment里使用的时候，并且加载Fragment的Activity配置了android:configChanges="orientation|keyboardHidden|screenSize"属性时，
                 //不建议使用ImmersionBar里的addViewSupportTransformColor()方法实现标题滑动渐变
@@ -168,32 +180,16 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
             }
         });
 
-        //文章列表点击事件↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        //点击事件
-        homePageAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        ivHomeMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.d("TAG", "onItemClick: " + listData.get(position).getAuthor());
-                Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), BannerActivity.class);
-                intent.putExtra("url", listData.get(position).getLink());
-                getActivity().startActivity(intent);
+//                MainActivity.initMainActivity().showNavigationView();
+
+                homeFragmentListener.showNavigationView();
 
             }
         });
-
-        //长按事件
-        homePageAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.d("TAG", "onItemLongClick: " + listData.get(position).getAuthor());
-                Toast.makeText(getActivity(), "onItemLongClick" + position, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
     }
 
     @Override
@@ -307,14 +303,6 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
             homePageAdapter.loadMoreEnd();
         }
     }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // TODO: inflate a fragment view
-//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-//        ButterKnife.bind(this, rootView);
-//        return rootView;
-//    }
 
     @Override
     public void onDestroyView() {

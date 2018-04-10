@@ -1,5 +1,6 @@
 package com.wanandroid.com.fragment;
 
+import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import com.wanandroid.com.utils.AutoLinefeedLayout;
 import com.wanandroid.com.utils.LoadingUtils;
 import com.wanandroid.com.utils.UIUtils;
 import com.wanandroid.com.view.TypeView;
+import com.wanandroid.com.view.myinterface.TypeFragmentListener;
 
 import java.util.List;
 
@@ -40,6 +42,14 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     AutoLinefeedLayout llTag;
     private SearchAdapter homePageAdapter;
 
+    private TypeFragmentListener typeFragmentListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        typeFragmentListener = (TypeFragmentListener) context;
+    }
+
     @Override
     protected TypePresent createPresenter() {
         return new TypePresent(getActivity());
@@ -57,6 +67,9 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
+
+        //禁止关闭侧滑菜单
+        typeFragmentListener.isDrawerLockMode(false);
 
         //显示loading动画
         LoadingUtils.showLoadingView(getActivity(), "正在加载中。。。");

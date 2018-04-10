@@ -8,7 +8,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
-        
+
+        //swipeback库需要添加
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,4 +29,27 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+def supportVersion = "26.0.2"
+project.ext {
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.2"
+
+    applicationId = "com.hitomi.transferimage"
+    minSdkVersion = 14
+    targetSdkVersion = 26
+    versionCode = 1
+    versionName = "1.0.0"
+
+    abortOnLintError = false
+    checkLintRelease = false
+    useJack = false
+    abortOnLintError = false
+    javaVersion = JavaVersion.VERSION_1_8
+
+    // 第三方库版本管理
+    libSupportV4 = "com.android.support:support-v4:${supportVersion}"
+    libSupportV7 = "com.android.support:appcompat-v7:${supportVersion}"
+    libSupportAppcompat = "com.android.support:appcompat-v7:${supportVersion}"
+    libSupportDesign = "com.android.support:design:${supportVersion}"
 }

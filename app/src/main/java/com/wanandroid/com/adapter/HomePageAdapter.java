@@ -1,6 +1,7 @@
 package com.wanandroid.com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wanandroid.com.R;
+import com.wanandroid.com.activity.BannerActivity;
 import com.wanandroid.com.model.pojo.ArticleBean;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, final ArticleBean item) {
+    protected void convert(final BaseViewHolder helper, final ArticleBean item) {
         helper.setText(R.id.tv_item_auth0r, item.getAuthor())
                 .setText(R.id.tv_item_niceDate, item.getNiceDate())
                 .setText(R.id.tv_item_title, Html.fromHtml(item.getTitle()))
@@ -41,8 +43,6 @@ public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, item.getAuthor(), Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
@@ -53,5 +53,28 @@ public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
                 return true;
             }
         });
+
+        //文章列表点击事件↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        //长按事件
+        helper.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(mContext, "onLongClick()", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        //点击事件
+        helper.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "onClick()", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, BannerActivity.class);
+                intent.putExtra("url", item.getLink());
+                mContext.startActivity(intent);
+            }
+        });
+        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     }
 }

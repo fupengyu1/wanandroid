@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">WanAndroid</string>
 
+    <string name="action_github">Github</string>
+    <string name="start_activity">Start new activity!</string>
+    <string name="finish_activity">Finish Activity</string>
+
+    <string name="key_tracking_mode">key_tracking_mode</string>
+    <string name="tracking_mode_left">Left</string>
+    <string name="tracking_mode_right">Right</string>
+    <string name="tracking_mode_bottom">Bottom</string>
+    <string name="tracking_mode_all">All</string>
+
+
     <string name="action_voice_rec">action voice rec</string>
     <string name="action_location">action location</string>
     <string name="action_taxi">action taxi</string>
@@ -28,5 +39,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
         <item>Ruby</item>
         <item>JavaScript</item>
     </string-array>
+
+
+    //首页
+    <string name="ic_home">&#xe64f;</string>
+    //我的
+    <string name="ic_user">&#xe732;</string>
+    //分类
+    <string name="ic_type">&#xe70c;</string>
 
 </resources>
