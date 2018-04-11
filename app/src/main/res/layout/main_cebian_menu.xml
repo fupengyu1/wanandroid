@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp">
+
+    <!--会员-->
+    <RelativeLayout
+        android:id="@+id/rl_member_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <com.wanandroid.com.widget.IconFontTextView
+            android:id="@+id/ift_member_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/member"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_member_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ift_member_menu"
+            android:padding="10dp"
+            android:text="会员"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <!--钱包-->
+    <RelativeLayout
+        android:id="@+id/rl_wallet_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_member_menu"
+        android:padding="10dp">
+
+        <com.wanandroid.com.widget.IconFontTextView
+            android:id="@+id/ift_wallet_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/wallet"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_wallet_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ift_wallet_menu"
+            android:padding="10dp"
+            android:text="钱包"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <!--相册-->
+    <RelativeLayout
+        android:id="@+id/rl_album_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_wallet_menu"
+        android:padding="10dp">
+
+        <com.wanandroid.com.widget.IconFontTextView
+            android:id="@+id/ift_album_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/album"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_album_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ift_album_menu"
+            android:padding="10dp"
+            android:text="相册"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <!--装扮-->
+    <RelativeLayout
+        android:id="@+id/rl_attire_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_album_menu"
+        android:padding="10dp">
+
+        <com.wanandroid.com.widget.IconFontTextView
+            android:id="@+id/ift_attire_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/attire"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_attire_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ift_attire_menu"
+            android:padding="10dp"
+            android:text="装扮"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <!--文件-->
+    <RelativeLayout
+        android:id="@+id/rl_file_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_attire_menu"
+        android:padding="10dp">
+
+        <com.wanandroid.com.widget.IconFontTextView
+            android:id="@+id/ift_file_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/file"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_file_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ift_file_menu"
+            android:padding="10dp"
+            android:text="文件"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

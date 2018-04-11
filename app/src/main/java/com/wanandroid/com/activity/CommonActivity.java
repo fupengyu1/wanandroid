@@ -1,13 +1,18 @@
 package com.wanandroid.com.activity;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hitomi.tilibrary.style.index.NumberIndexIndicator;
 import com.hitomi.tilibrary.style.progress.ProgressBarIndicator;
@@ -19,9 +24,12 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.orhanobut.logger.Logger;
 import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.PictureAdapter;
+import com.wanandroid.com.adapter.PictureAdapter2;
 import com.wanandroid.com.base.BaseSwipeBackActivity;
 import com.wanandroid.com.presenter.CommonPresent;
+import com.wanandroid.com.utils.DialogUtils;
 import com.wanandroid.com.view.CommonView;
+import com.wanandroid.com.view.myinterface.MyDialog;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -47,8 +55,12 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
     RecyclerView rclCommon;
     @Bind(R.id.rcl_common_1)
     RecyclerView rclCommon1;
+    @Bind(R.id.rcl_commom_2)
+    RecyclerView rclCommom2;
 
     PictureAdapter pictureAdapter;
+    PictureAdapter2 pictureAdapter2;
+
 
     {
         thumbnailImageList = new ArrayList<>();
@@ -88,10 +100,9 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
     @Override
     protected void testTransferee() {
 
-        Logger.e("testTransferee()");
-
+        //网络获取图片并加载
         config = TransferConfig.build()
-                .setThumbnailImageList(thumbnailImageList)
+//                .setThumbnailImageList(thumbnailImageList)
                 .setSourceImageList(sourceImageList)
                 .setMissPlaceHolder(R.mipmap.ic_empty_photo)
                 .setErrorPlaceHolder(R.mipmap.ic_empty_photo)
@@ -103,12 +114,24 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
                 .setOnLongClcikListener(new Transferee.OnTransfereeLongClickListener() {
                     @Override
                     public void onLongClick(ImageView imageView, int pos) {
-                        saveImageByUniversal(imageView);
+
+                        DialogUtils.showDialog(CommonActivity.this, new MyDialog() {
+                            @Override
+                            public void setPositiveButton() {
+                                Toast.makeText(CommonActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                                saveImageByUniversal(imageView);
+                            }
+
+                            @Override
+                            public void setNegativeButton() {
+                                Toast.makeText(CommonActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                     }
                 })
                 .create();
-
-        rclCommon1.setAdapter(new CommonActivity.NineGridAdapter());
+        rclCommon1.setAdapter(new NineGridAdapter());
     }
 
     @Override
@@ -127,7 +150,7 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
         tvCommonTag.setText(text);
         tvCommonTitle.setText(text);
 
-//////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         rclCommon1.setLayoutManager(new GridLayoutManager(this, 3));
 
@@ -135,18 +158,73 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
         pictureAdapter = new PictureAdapter(CommonActivity.this, null);
         rclCommon.setAdapter(pictureAdapter);
 
+        rclCommom2.setLayoutManager(new GridLayoutManager(this,3));
+        pictureAdapter2 = new PictureAdapter2(CommonActivity.this,null);
+        rclCommom2.setAdapter(pictureAdapter2);
+
         mPresenter.getUrlList();
+        mPresenter.getLocalPicUrlList(CommonActivity.this);
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+
+        mPresenter.getLocalPicUrlList(CommonActivity.this);
     }
 
     @Override
     public void getPicUrlListSuccess(List<String> posters) {
+        pictureAdapter.setNewData(posters);
+    }
 
-        if (pictureAdapter != null && posters != null) {
+    @Override
+    public void getLocalPicUrlListSuccess(List<String> images) {
+        pictureAdapter2.setNewData(images);
+    }
 
-            Logger.e("posters == " + posters);
+    /**
+     * 使用ContentProvider读取SD卡最近图片
+     *
+     * @param maxCount 读取的最大张数
+     * @return
+     */
+    private List<String> getLatestPhotoPaths(int maxCount) {
+        Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
-            pictureAdapter.setNewData(posters);
+        String key_MIME_TYPE = MediaStore.Images.Media.MIME_TYPE;
+        String key_DATA = MediaStore.Images.Media.DATA;
+
+        ContentResolver mContentResolver = getContentResolver();
+
+        // 只查询jpg和png的图片,按最新修改排序
+        Cursor cursor = mContentResolver.query(mImageUri, new String[]{key_DATA},
+                key_MIME_TYPE + "=? or " + key_MIME_TYPE + "=? or " + key_MIME_TYPE + "=?",
+                new String[]{"image/jpg", "image/jpeg", "image/png"},
+                MediaStore.Images.Media.DATE_MODIFIED);
+
+        List<String> latestImagePaths = null;
+        if (cursor != null) {
+            //从最新的图片开始读取.
+            //当cursor中没有数据时，cursor.moveToLast()将返回false
+            if (cursor.moveToLast()) {
+                latestImagePaths = new ArrayList<String>();
+
+                while (true) {
+                    // 获取图片的路径
+                    String path = "file:/" + cursor.getString(0);
+                    if (!latestImagePaths.contains(path))
+                        latestImagePaths.add(path);
+
+                    if (latestImagePaths.size() >= maxCount || !cursor.moveToPrevious()) {
+                        break;
+                    }
+                }
+            }
+            cursor.close();
         }
+
+        return latestImagePaths;
     }
 
     private class NineGridAdapter extends CommonAdapter<String> {
@@ -172,7 +250,6 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     bindTransferee(imageView, position);
-
                 }
 
                 @Override
@@ -182,6 +259,7 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
             });
         }
     }
+
 
     private void bindTransferee(ImageView imageView, final int position) {
         // 如果指定了缩略图，那么缩略图一定要先加载完毕

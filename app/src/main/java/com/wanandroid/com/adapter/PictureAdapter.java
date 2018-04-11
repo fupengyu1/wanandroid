@@ -10,7 +10,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.orhanobut.logger.Logger;
 import com.wanandroid.com.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,24 +33,11 @@ public class PictureAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
         Glide.with(mContext).load(item).into(firstImage);
 
-        Logger.e("item == " + item);
-
-
-//        Bitmap bitmap = null;
-//
-//        try {
-//            bitmap = Glide.with(mContext).load(item).asBitmap().into(10,10).get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-
         helper.setText(R.id.tv_pic_test,item);
-//        helper.setImageBitmap(R.id.firstImage,bitmap);
 
-        List<String> strings = new ArrayList<>();
-        strings.add(item);
+        int adapterPosition = helper.getAdapterPosition();
+
+        Logger.e("item == " + item + "position == " + adapterPosition);
 
     }
 }

@@ -6,11 +6,32 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="TextView"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
+    <com.wanandroid.com.widget.IconFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical"
+        android:text="@string/arrow_right"
+        android:textSize="40sp" />
+
+    <com.wanandroid.com.widget.IconFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:text="@string/arrow_left"
+        android:textSize="40sp" />
+
+    <com.wanandroid.com.widget.IconFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:text="@string/arrow_top"
+        android:textSize="40sp" />
 
 
 </android.support.constraint.ConstraintLayout>

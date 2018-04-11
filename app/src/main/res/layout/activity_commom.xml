@@ -4,27 +4,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_common_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tl_common"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="这里是共用activity"
-        android:visibility="visible" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcl_common"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tv_common_tag" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcl_common_1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rcl_common" />
+        android:layout_below="@+id/tl_common">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_common_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="这里是共用activity"
+                android:visibility="visible" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_common"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/tv_common_tag" />
+
+            <TextView
+                android:id="@+id/tv_title_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcl_common"
+                android:gravity="center"
+                android:text="加载网络图片不可点击" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_common_1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/tv_title_1" />
+
+            <TextView
+                android:id="@+id/tv_title_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcl_common_1"
+                android:gravity="center"
+                android:text="加载网络图片可点击放大" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_commom_2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/tv_title_2" />
+
+            <TextView
+                android:id="@+id/tv_title_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcl_commom_2"
+                android:gravity="center"
+                android:text="加载本地图片不可放大" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <!--toolbar-->
     <android.support.v7.widget.Toolbar
@@ -51,5 +93,6 @@
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
+
 
 </RelativeLayout>

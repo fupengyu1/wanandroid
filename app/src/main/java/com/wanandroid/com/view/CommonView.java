@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface CommonView {
     void getPicUrlListSuccess(List<String> posters);
+
+    void getLocalPicUrlListSuccess(List<String> images);
 }

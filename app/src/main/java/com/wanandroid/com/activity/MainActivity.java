@@ -3,14 +3,14 @@ package com.wanandroid.com.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +61,40 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
     IconFontTextView ivMain2;
     @Bind(R.id.iv_main_3)
     IconFontTextView ivMain3;
+    @Bind(R.id.person)
+    ImageView person;
+    @Bind(R.id.tv_name_menu)
+    TextView tvNameMenu;
+    @Bind(R.id.ift_member_menu)
+    IconFontTextView iftMemberMenu;
+    @Bind(R.id.tv_member_menu)
+    TextView tvMemberMenu;
+    @Bind(R.id.rl_member_menu)
+    RelativeLayout rlMemberMenu;
+    @Bind(R.id.ift_wallet_menu)
+    IconFontTextView iftWalletMenu;
+    @Bind(R.id.tv_wallet_menu)
+    TextView tvWalletMenu;
+    @Bind(R.id.rl_wallet_menu)
+    RelativeLayout rlWalletMenu;
+    @Bind(R.id.ift_album_menu)
+    IconFontTextView iftAlbumMenu;
+    @Bind(R.id.tv_album_menu)
+    TextView tvAlbumMenu;
+    @Bind(R.id.rl_album_menu)
+    RelativeLayout rlAlbumMenu;
+    @Bind(R.id.ift_attire_menu)
+    IconFontTextView iftAttireMenu;
+    @Bind(R.id.tv_attire_menu)
+    TextView tvAttireMenu;
+    @Bind(R.id.rl_attire_menu)
+    RelativeLayout rlAttireMenu;
+    @Bind(R.id.ift_file_menu)
+    IconFontTextView iftFileMenu;
+    @Bind(R.id.tv_file_menu)
+    TextView tvFileMenu;
+    @Bind(R.id.rl_file_menu)
+    RelativeLayout rlFileMenu;
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -118,53 +152,54 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
     public void initData() {
         super.initData();
 
-        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-
-                Bundle bundle = new Bundle();
-
-                switch (item.getItemId()) {
-                    case R.id.favorite:
-                        Toast.makeText(MainActivity.this, "favorite", Toast.LENGTH_SHORT).show();
-
-                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, null);
-
-                        break;
-                    case R.id.wallet:
-                        Toast.makeText(MainActivity.this, "wallet", Toast.LENGTH_SHORT).show();
-
-                        bundle.putString("text", "wallet");
-                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
-                        break;
-                    case R.id.photo:
-                        Toast.makeText(MainActivity.this, "photo", Toast.LENGTH_SHORT).show();
-                        bundle.putString("text", "photo");
-                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
-                        break;
-                    case R.id.dress:
-                        Toast.makeText(MainActivity.this, "dress", Toast.LENGTH_SHORT).show();
-                        bundle.putString("text", "dress");
-                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
-                        break;
-                    case R.id.file:
-                        Toast.makeText(MainActivity.this, "file", Toast.LENGTH_SHORT).show();
-                        bundle.putString("text", "file");
-                        StartActivity.startActivity(MainActivity.this, SwipeBackDemoActivity.class, bundle);
-                        break;
-                }
-                dlMain.closeDrawer(nav);
-                return false;
-            }
-        });
-
-        nav.getHeaderView(0).findViewById(R.id.person).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "这里是头像", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //如果使用NavigationView的header和menu使用以下代码
+//        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+////                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+//
+//                Bundle bundle = new Bundle();
+//
+//                switch (item.getItemId()) {
+//                    case R.id.favorite:
+//                        Toast.makeText(MainActivity.this, "favorite", Toast.LENGTH_SHORT).show();
+//
+//                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, null);
+//
+//                        break;
+//                    case R.id.wallet:
+//                        Toast.makeText(MainActivity.this, "wallet", Toast.LENGTH_SHORT).show();
+//
+//                        bundle.putString("text", "wallet");
+//                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+//                        break;
+//                    case R.id.photo:
+//                        Toast.makeText(MainActivity.this, "photo", Toast.LENGTH_SHORT).show();
+//                        bundle.putString("text", "photo");
+//                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+//                        break;
+//                    case R.id.dress:
+//                        Toast.makeText(MainActivity.this, "dress", Toast.LENGTH_SHORT).show();
+//                        bundle.putString("text", "dress");
+//                        StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+//                        break;
+//                    case R.id.file:
+//                        Toast.makeText(MainActivity.this, "file", Toast.LENGTH_SHORT).show();
+//                        bundle.putString("text", "file");
+//                        StartActivity.startActivity(MainActivity.this, SwipeBackDemoActivity.class, bundle);
+//                        break;
+//                }
+//                dlMain.closeDrawer(nav);
+//                return false;
+//            }
+//        });
+//
+//        nav.getHeaderView(0).findViewById(R.id.person).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, "这里是头像", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 
@@ -182,8 +217,12 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3,
-            R.id.iv_main_1, R.id.mian_tab_1, R.id.iv_main_2, R.id.mian_tab_2, R.id.iv_main_3, R.id.mian_tab_3})
+            R.id.iv_main_1, R.id.mian_tab_1, R.id.iv_main_2, R.id.mian_tab_2, R.id.iv_main_3, R.id.mian_tab_3,
+            R.id.person, R.id.tv_name_menu, R.id.rl_member_menu, R.id.rl_wallet_menu, R.id.rl_album_menu, R.id.rl_attire_menu, R.id.rl_file_menu})
     public void onViewClicked(View view) {
+
+        Bundle bundle = new Bundle();
+
         switch (view.getId()) {
             case R.id.ll_main_1:
                 mainViewpager.setCurrentItem(0);
@@ -220,6 +259,36 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
             case R.id.mian_tab_3:
                 mainViewpager.setCurrentItem(2);
                 setTabColor(mianTab3, ivMain3);
+                break;
+            case R.id.person:
+                Toast.makeText(MainActivity.this, "这里是头像", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_name_menu:
+                Toast.makeText(MainActivity.this, "这里是名字", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.rl_member_menu:
+                Toast.makeText(MainActivity.this, "menu", Toast.LENGTH_SHORT).show();
+                StartActivity.startActivity(MainActivity.this, CommonActivity.class, null);
+                break;
+            case R.id.rl_wallet_menu:
+                Toast.makeText(MainActivity.this, "wallet", Toast.LENGTH_SHORT).show();
+                bundle.putString("text", "钱包");
+                StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+                break;
+            case R.id.rl_album_menu:
+                Toast.makeText(MainActivity.this, "album", Toast.LENGTH_SHORT).show();
+                bundle.putString("text", "相册");
+                StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+                break;
+            case R.id.rl_attire_menu:
+                Toast.makeText(MainActivity.this, "attire", Toast.LENGTH_SHORT).show();
+                bundle.putString("text", "装扮");
+                StartActivity.startActivity(MainActivity.this, CommonActivity.class, bundle);
+                break;
+            case R.id.rl_file_menu:
+                Toast.makeText(MainActivity.this, "file", Toast.LENGTH_SHORT).show();
+                bundle.putString("text", "文件");
+                StartActivity.startActivity(MainActivity.this, SwipeBackDemoActivity.class, bundle);
                 break;
         }
     }

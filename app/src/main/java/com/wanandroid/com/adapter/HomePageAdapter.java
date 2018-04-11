@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wanandroid.com.R;
 import com.wanandroid.com.activity.BannerActivity;
@@ -21,7 +21,7 @@ import java.util.List;
  * date: 2018/3/16.
  */
 
-public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> {
+public class HomePageAdapter extends BaseItemDraggableAdapter<ArticleBean, BaseViewHolder> {
 
     private Context mContext;
 

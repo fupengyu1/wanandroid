@@ -2,6 +2,7 @@ package com.wanandroid.com.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +19,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
+import com.chad.library.adapter.base.listener.OnItemDragListener;
+import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.library.viewspread.helper.BaseViewHelper;
@@ -116,6 +121,52 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
         banner = (Banner) headView.findViewById(R.id.banner);
         homePageAdapter.addHeaderView(headView);
         onRefresh();
+
+        ItemDragAndSwipeCallback itemDragAndSwipeCallback = new ItemDragAndSwipeCallback(homePageAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemDragAndSwipeCallback);
+        itemTouchHelper.attachToRecyclerView(rcvHome);
+        // 开启拖拽
+        homePageAdapter.enableDragItem(itemTouchHelper, R.id.rcv_home, true);
+        homePageAdapter.setOnItemDragListener(new OnItemDragListener() {
+            @Override
+            public void onItemDragStart(RecyclerView.ViewHolder viewHolder, int pos) {
+
+            }
+
+            @Override
+            public void onItemDragMoving(RecyclerView.ViewHolder source, int from, RecyclerView.ViewHolder target, int to) {
+
+            }
+
+            @Override
+            public void onItemDragEnd(RecyclerView.ViewHolder viewHolder, int pos) {
+
+            }
+        });
+        // 开启滑动删除
+        homePageAdapter.enableSwipeItem();
+        homePageAdapter.setOnItemSwipeListener(new OnItemSwipeListener() {
+            @Override
+            public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
+
+            }
+
+            @Override
+            public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
+
+            }
+
+            @Override
+            public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
+
+            }
+
+            @Override
+            public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
+
+            }
+        });
+
 
     }
 

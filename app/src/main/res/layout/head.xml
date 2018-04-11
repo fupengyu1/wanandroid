@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="250dp"
     android:background="@color/chuck_status_300"
     android:gravity="center"
     android:orientation="vertical">
@@ -14,6 +14,7 @@
         android:src="@mipmap/head" />
 
     <TextView
+        android:id="@+id/tv_name_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

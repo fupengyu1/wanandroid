@@ -295,5 +295,4 @@ public class Transferee implements DialogInterface.OnShowListener,
     public interface OnTransfereeLongClickListener {
         void onLongClick(ImageView imageView, int pos);
     }
-
 }

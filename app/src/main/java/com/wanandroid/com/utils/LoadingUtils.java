@@ -19,8 +19,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 public class LoadingUtils {
 
-    public static boolean isShowLoading = false;
-
     private static Dialog dialog;
 
     /**

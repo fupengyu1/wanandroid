@@ -182,7 +182,6 @@ public final class TransferConfig {
     public void setLongClickListener(Transferee.OnTransfereeLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
-
     /**
      * 原图路径集合是否为空
      *

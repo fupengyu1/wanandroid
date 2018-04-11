@@ -47,5 +47,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum lorem 
     <string name="ic_user">&#xe732;</string>
     //分类
     <string name="ic_type">&#xe70c;</string>
+    //左箭头
+    <string name="arrow_left">&#xe614;</string>
+    //右箭头
+    <string name="arrow_right">&#xe625;</string>
+    //上箭头
+    <string name="arrow_top">&#xe64c;</string>
+    //会员
+    <string name="member">&#xe613;</string>
+    //钱包
+    <string name="wallet">&#xe60a;</string>
+    //相册
+    <string name="album">&#xe60c;</string>
+    //装扮
+    <string name="attire">&#xe655;</string>
+    //文件
+    <string name="file">&#xe662;</string>
 
 </resources>
