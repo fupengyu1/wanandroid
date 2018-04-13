@@ -21,7 +21,7 @@ import java.util.List;
  * date: 2018/4/8.
  */
 
-public class CommonPresent extends BasePresenter<CommonView> {
+public class CommonPresenter extends BasePresenter<CommonView> {
 
     private static final String POSTERS_PATH = "https://raw.githubusercontent.com/stfalcon-studio/FrescoImageViewer/v.0.5.0/images/posters";
     protected static final int READ_EXTERNAL_STORAGE = 100;

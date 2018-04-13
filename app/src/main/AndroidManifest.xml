@@ -37,7 +37,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".activity.CommonActivity" />
-        <activity android:name=".activity.SwipeBackDemoActivity"></activity>
+        <activity android:name=".activity.SwipeBackDemoActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.CollectActivity"/>
     </application>
 
 </manifest>

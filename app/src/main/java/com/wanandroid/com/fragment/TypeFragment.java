@@ -13,9 +13,8 @@ import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.SearchAdapter;
 import com.wanandroid.com.base.BaseFragment;
 import com.wanandroid.com.model.pojo.ArticleBean;
-import com.wanandroid.com.presenter.TypePresent;
+import com.wanandroid.com.presenter.TypePresenter;
 import com.wanandroid.com.utils.AutoLinefeedLayout;
-import com.wanandroid.com.utils.LoadingUtils;
 import com.wanandroid.com.utils.UIUtils;
 import com.wanandroid.com.view.TypeView;
 import com.wanandroid.com.view.myinterface.TypeFragmentListener;
@@ -30,7 +29,7 @@ import butterknife.ButterKnife;
  * date: 2018/3/5.
  */
 
-public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements TypeView, BaseQuickAdapter.RequestLoadMoreListener {
+public class TypeFragment extends BaseFragment<TypeView, TypePresenter> implements TypeView, BaseQuickAdapter.RequestLoadMoreListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -51,8 +50,8 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     }
 
     @Override
-    protected TypePresent createPresenter() {
-        return new TypePresent(getActivity());
+    protected TypePresenter createPresenter() {
+        return new TypePresenter(getActivity());
     }
 
     @Override
@@ -72,7 +71,7 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
         typeFragmentListener.isDrawerLockMode(false);
 
         //显示loading动画
-        LoadingUtils.showLoadingView(getActivity(), "正在加载中。。。");
+//        LoadingUtils.showLoadingView(getContext(), "TypeFragment 正在加载中。。。");
 
         rcvType.setLayoutManager(new LinearLayoutManager(UIUtils.getContext()));
         homePageAdapter = new SearchAdapter(UIUtils.getContext(), null);
@@ -114,21 +113,21 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     @Override
     public void getDataError(String message) {
         //关闭Loading动画
-        LoadingUtils.hideLoadingView();
+//        LoadingUtils.hideLoadingView();
         Snackbar.make(rcvType, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void getRefreshDataSuccess(List<ArticleBean> data) {
         //关闭Loading动画
-        LoadingUtils.hideLoadingView();
+//        LoadingUtils.hideLoadingView();
         homePageAdapter.setNewData(data);
     }
 
     @Override
     public void getMoreDataSuccess(List<ArticleBean> data) {
         //关闭Loading动画
-        LoadingUtils.hideLoadingView();
+//        LoadingUtils.hideLoadingView();
         if (data.size() != 0) {
             homePageAdapter.addData(data);
             homePageAdapter.loadMoreComplete();
@@ -141,7 +140,7 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     public void onDestroyView() {
 
         //关闭Loading动画
-        LoadingUtils.hideLoadingView();
+//        LoadingUtils.hideLoadingView();
 
         super.onDestroyView();
         ButterKnife.unbind(this);
@@ -150,7 +149,7 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresent> implements
     @Override
     public void onLoadMoreRequested() {
         //显示loading动画
-        LoadingUtils.showLoadingView(getActivity(), "正在加载中。。。");
+//        LoadingUtils.showLoadingView(getContext(), "TypeFragment 正在加载中。。。");
         mPresenter.getMoreData();
     }
 }

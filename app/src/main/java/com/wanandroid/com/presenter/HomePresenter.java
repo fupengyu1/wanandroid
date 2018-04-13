@@ -7,13 +7,16 @@ import com.wanandroid.com.helper.rxjavahelper.RxObserver;
 import com.wanandroid.com.helper.rxjavahelper.RxResultHelper;
 import com.wanandroid.com.helper.rxjavahelper.RxSchedulersHelper;
 import com.wanandroid.com.model.ResponseData;
+import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.model.pojo.BannerBean;
 import com.wanandroid.com.model.pojoVO.ArticleListVO;
 import com.wanandroid.com.view.HomeView;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * author: fupengyu
@@ -99,6 +102,26 @@ public class HomePresenter extends BasePresenter<HomeView> {
                     @Override
                     public void _onError(String errorMessage) {
                         getView().getDataError(errorMessage);
+                    }
+                });
+    }
+
+    //收藏
+    public void getCollectArticle(ArticleBean item) {
+
+        WanService.collectArticle(item.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new RxObserver<ResponseData<String>>() {
+                    @Override
+                    public void _onNext(ResponseData<String> stringResponseData) {
+                        getView().getCollectArticleSuc(stringResponseData);
+                    }
+
+                    @Override
+                    public void _onError(String errorMessage) {
+                        getView().getCollectArticleFail(errorMessage);
+
                     }
                 });
     }

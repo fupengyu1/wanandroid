@@ -1,7 +1,7 @@
 package com.wanandroid.com.utils;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,7 +25,7 @@ public class LoadingUtils {
      * @param activity 上下文
      * @param msg     显示内容
      */
-    public static void showLoadingView(Activity activity, String msg) {
+    public static void showLoadingView(Context activity, String msg) {
 
         View view = LayoutInflater.from(activity).inflate(R.layout.loading_view, null);
         AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) view.findViewById(R.id.AVLoadingIndicatorView);

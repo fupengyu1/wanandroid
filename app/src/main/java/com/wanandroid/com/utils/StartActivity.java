@@ -13,6 +13,7 @@ public class StartActivity {
 
     public static void startActivity(Context context, Class activity, Bundle bundle) {
         Intent intent = new Intent(context, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (bundle != null) {
             intent.putExtras(bundle);
         }

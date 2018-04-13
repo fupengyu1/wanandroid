@@ -18,8 +18,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.wanandroid.com.R;
+import com.wanandroid.com.activity.CollectActivity;
+import com.wanandroid.com.activity.LoginActivity;
+import com.wanandroid.com.app.AppConst;
 import com.wanandroid.com.base.BaseFragment;
 import com.wanandroid.com.base.BasePresenter;
+import com.wanandroid.com.utils.PrefUtils;
+import com.wanandroid.com.utils.StartActivity;
 import com.wanandroid.com.utils.UIUtils;
 import com.wanandroid.com.view.myinterface.UserFragmentListener;
 
@@ -50,6 +55,10 @@ public class UserFragment extends BaseFragment {
     TextView tvUserShangpinshoucangNum;
     @Bind(R.id.tv_user_zuji)
     TextView tvUserZuji;
+    @Bind(R.id.user_nickname)
+    TextView userNickname;
+    @Bind(R.id.rl_user_shoucang)
+    RelativeLayout rl_user_shoucang;
     private int mOffset = 0;
     private int mScrollY = 0;
 
@@ -78,12 +87,22 @@ public class UserFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
         ImmersionBar.setTitleBar(getActivity(), toolbar);
     }
 
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
+
+        if (PrefUtils.getBoolean(getContext(), AppConst.IS_LOGIN_KEY, false) == false) {
+//                    tvLogou.setText("点击登录");
+//                    tvName.setText("暂未登录");
+        } else {
+            userNickname.setText(PrefUtils.getString(getContext(), AppConst.USERNAME_KEY, "点击登录"));
+//                    tvLogou.setText("退出登录");
+        }
+
 
         final RefreshLayout refreshLayout = (RefreshLayout) rootView.findViewById(R.id.refreshLayout);
         //设置 Header 为 贝塞尔雷达 样式
@@ -167,7 +186,7 @@ public class UserFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.tv_user_chakanquanbu, R.id.tv_user_shangpinshoucang_num, R.id.tv_user_zuji, R.id.iv_user_menu})
+    @OnClick({R.id.tv_user_chakanquanbu, R.id.tv_user_shangpinshoucang_num, R.id.tv_user_zuji, R.id.iv_user_menu, R.id.user_nickname, R.id.rl_user_shoucang})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_user_chakanquanbu:
@@ -180,6 +199,12 @@ public class UserFragment extends BaseFragment {
 
                 userFragmentListener.showNavigationView();
 
+                break;
+            case R.id.user_nickname:
+                StartActivity.startActivity(getActivity(), LoginActivity.class, null);
+                break;
+            case R.id.rl_user_shoucang:
+                StartActivity.startActivity(getActivity(),CollectActivity.class,null);
                 break;
         }
     }

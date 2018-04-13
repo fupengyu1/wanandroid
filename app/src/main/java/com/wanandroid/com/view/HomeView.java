@@ -1,6 +1,7 @@
 package com.wanandroid.com.view;
 
 
+import com.wanandroid.com.model.ResponseData;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.model.pojo.BannerBean;
 
@@ -19,4 +20,7 @@ public interface HomeView {
     void getRefreshDataSuccess(List<ArticleBean> data);
     void getMoreDataSuccess(List<ArticleBean> data);
 
+    void getCollectArticleSuc(ResponseData<String> s);
+
+    void getCollectArticleFail(String errorMessage);
 }

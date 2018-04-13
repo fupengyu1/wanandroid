@@ -26,7 +26,7 @@ import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.PictureAdapter;
 import com.wanandroid.com.adapter.PictureAdapter2;
 import com.wanandroid.com.base.BaseSwipeBackActivity;
-import com.wanandroid.com.presenter.CommonPresent;
+import com.wanandroid.com.presenter.CommonPresenter;
 import com.wanandroid.com.utils.DialogUtils;
 import com.wanandroid.com.view.CommonView;
 import com.wanandroid.com.view.myinterface.MyDialog;
@@ -43,7 +43,7 @@ import butterknife.Bind;
  * date: 2018/4/8.
  */
 
-public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPresent> implements CommonView {
+public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPresenter> implements CommonView {
 
     @Bind(R.id.tv_common_tag)
     TextView tvCommonTag;
@@ -88,8 +88,8 @@ public class CommonActivity extends BaseSwipeBackActivity<CommonView, CommonPres
 
 
     @Override
-    protected CommonPresent createPresenter() {
-        return new CommonPresent();
+    protected CommonPresenter createPresenter() {
+        return new CommonPresenter();
     }
 
     @Override

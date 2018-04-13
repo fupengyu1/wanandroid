@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseItemDraggableAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wanandroid.com.R;
 import com.wanandroid.com.activity.BannerActivity;
 import com.wanandroid.com.model.pojo.ArticleBean;
+import com.wanandroid.com.view.myinterface.HomeAdapterClickListener;
 
 import java.util.List;
 
@@ -21,13 +22,16 @@ import java.util.List;
  * date: 2018/3/16.
  */
 
-public class HomePageAdapter extends BaseItemDraggableAdapter<ArticleBean, BaseViewHolder> {
+public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> {
 
     private Context mContext;
 
-    public HomePageAdapter(Context context, @Nullable List<ArticleBean> data) {
+    private HomeAdapterClickListener homeAdapterClickListener;
+
+    public HomePageAdapter(Context context, @Nullable List<ArticleBean> data , HomeAdapterClickListener homeAdapterClickListener) {
         super(R.layout.home_item, data);
         mContext = context;
+        this.homeAdapterClickListener = homeAdapterClickListener;
     }
 
     @Override
@@ -39,6 +43,7 @@ public class HomePageAdapter extends BaseItemDraggableAdapter<ArticleBean, BaseV
 
         TextView tv_item_auth0r = helper.getView(R.id.tv_item_auth0r);
         TextView tv_item_title = helper.getView(R.id.tv_item_title);
+        TextView tv_item_shoucang = helper.getView(R.id.tv_item_shoucang);
         tv_item_auth0r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +56,13 @@ public class HomePageAdapter extends BaseItemDraggableAdapter<ArticleBean, BaseV
             public boolean onLongClick(View view) {
                 Toast.makeText(mContext, item.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
+            }
+        });
+
+        tv_item_shoucang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeAdapterClickListener.onShouCangClickListener(item);
             }
         });
 

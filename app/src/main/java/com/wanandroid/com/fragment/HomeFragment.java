@@ -2,7 +2,6 @@ package com.wanandroid.com.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,17 +10,14 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
-import com.chad.library.adapter.base.listener.OnItemDragListener;
-import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.library.viewspread.helper.BaseViewHelper;
@@ -31,10 +27,12 @@ import com.wanandroid.com.activity.BannerActivity;
 import com.wanandroid.com.activity.SearchActivity;
 import com.wanandroid.com.adapter.HomePageAdapter;
 import com.wanandroid.com.base.BaseFragment;
+import com.wanandroid.com.model.ResponseData;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.model.pojo.BannerBean;
 import com.wanandroid.com.presenter.HomePresenter;
 import com.wanandroid.com.view.HomeView;
+import com.wanandroid.com.view.myinterface.HomeAdapterClickListener;
 import com.wanandroid.com.view.myinterface.HomeFragmentListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -51,7 +49,7 @@ import butterknife.ButterKnife;
  * date: 2018/3/5.
  */
 
-public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implements HomeView, OnBannerListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implements HomeView, OnBannerListener, BaseQuickAdapter.RequestLoadMoreListener, HomeAdapterClickListener {
 
     //    @Bind(R.id.banner)
 //    Banner banner;
@@ -111,7 +109,14 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
         super.initView(rootView);
 
         rcvHome.setLayoutManager(new LinearLayoutManager(getContext()));
-        homePageAdapter = new HomePageAdapter(getContext(), null);
+        homePageAdapter = new HomePageAdapter(getContext(), null, new HomeAdapterClickListener() {
+            @Override
+            public void onShouCangClickListener(ArticleBean item) {
+                Logger.e("onShouCangClickListener item == " + item);
+
+                mPresenter.getCollectArticle(item);
+            }
+        });
         rcvHome.setAdapter(homePageAdapter);
         homePageAdapter.setOnLoadMoreListener(this, rcvHome);
         homePageAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
@@ -121,53 +126,6 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
         banner = (Banner) headView.findViewById(R.id.banner);
         homePageAdapter.addHeaderView(headView);
         onRefresh();
-
-        ItemDragAndSwipeCallback itemDragAndSwipeCallback = new ItemDragAndSwipeCallback(homePageAdapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemDragAndSwipeCallback);
-        itemTouchHelper.attachToRecyclerView(rcvHome);
-        // 开启拖拽
-        homePageAdapter.enableDragItem(itemTouchHelper, R.id.rcv_home, true);
-        homePageAdapter.setOnItemDragListener(new OnItemDragListener() {
-            @Override
-            public void onItemDragStart(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void onItemDragMoving(RecyclerView.ViewHolder source, int from, RecyclerView.ViewHolder target, int to) {
-
-            }
-
-            @Override
-            public void onItemDragEnd(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-        });
-        // 开启滑动删除
-        homePageAdapter.enableSwipeItem();
-        homePageAdapter.setOnItemSwipeListener(new OnItemSwipeListener() {
-            @Override
-            public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
-
-            }
-        });
-
-
     }
 
     @Override
@@ -356,6 +314,20 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     }
 
     @Override
+    public void getCollectArticleSuc(ResponseData<String> s) {
+        if (s.getErrorCode() == 0) {
+            Toast.makeText(getActivity(), "收藏成功", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), s.getErrorMsg(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getCollectArticleFail(String errorMessage) {
+        Logger.e("getCollectArticleSuc errorMessage == " + errorMessage);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
@@ -363,16 +335,19 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
     @Override
     public void OnBannerClick(int position) {
-
         Intent intent = new Intent(getActivity(), BannerActivity.class);
         intent.putExtra("url", bannerDatas.get(position).getUrl());
         startActivity(intent);
-
     }
 
     @Override
     public void onLoadMoreRequested() {
         mPresenter.getMoreData();
+    }
+
+    @Override
+    public void onShouCangClickListener(ArticleBean item) {
+        mPresenter.getCollectArticle(item);
     }
 
     public class GlideImageLoader extends ImageLoader {

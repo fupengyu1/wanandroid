@@ -16,12 +16,15 @@ import android.widget.Toast;
 
 import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.FragPagerAdapter;
+import com.wanandroid.com.app.AppConst;
 import com.wanandroid.com.base.BaseActivity;
 import com.wanandroid.com.base.BasePresenter;
 import com.wanandroid.com.fragment.HomeFragment;
 import com.wanandroid.com.fragment.TypeFragment;
 import com.wanandroid.com.fragment.UserFragment;
+import com.wanandroid.com.utils.PrefUtils;
 import com.wanandroid.com.utils.StartActivity;
+import com.wanandroid.com.utils.UIUtils;
 import com.wanandroid.com.view.myinterface.HomeFragmentListener;
 import com.wanandroid.com.view.myinterface.TypeFragmentListener;
 import com.wanandroid.com.view.myinterface.UserFragmentListener;
@@ -95,6 +98,10 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
     TextView tvFileMenu;
     @Bind(R.id.rl_file_menu)
     RelativeLayout rlFileMenu;
+    @Bind(R.id.tv_setting_menu)
+    TextView tvSettingMenu;
+    @Bind(R.id.tv_logout_menu)
+    TextView tvLogoutMenu;
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -113,6 +120,12 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
         super.initView();
 
         setTabColor(mianTab1, ivMain1);
+
+        if (PrefUtils.getBoolean(this, AppConst.IS_LOGIN_KEY, false) == false) {
+            tvNameMenu.setText("这里是名字");
+        } else {
+            tvNameMenu.setText(PrefUtils.getString(this, AppConst.USERNAME_KEY, "这里是名字"));
+        }
 
         fragments.add(HomeFragment.newInstance());
         fragments.add(TypeFragment.newInstance());
@@ -218,7 +231,8 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3,
             R.id.iv_main_1, R.id.mian_tab_1, R.id.iv_main_2, R.id.mian_tab_2, R.id.iv_main_3, R.id.mian_tab_3,
-            R.id.person, R.id.tv_name_menu, R.id.rl_member_menu, R.id.rl_wallet_menu, R.id.rl_album_menu, R.id.rl_attire_menu, R.id.rl_file_menu})
+            R.id.person, R.id.tv_name_menu, R.id.rl_member_menu, R.id.rl_wallet_menu, R.id.rl_album_menu, R.id.rl_attire_menu, R.id.rl_file_menu,
+            R.id.tv_setting_menu, R.id.tv_logout_menu})
     public void onViewClicked(View view) {
 
         Bundle bundle = new Bundle();
@@ -265,6 +279,7 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
                 break;
             case R.id.tv_name_menu:
                 Toast.makeText(MainActivity.this, "这里是名字", Toast.LENGTH_SHORT).show();
+                StartActivity.startActivity(this, LoginActivity.class, null);
                 break;
             case R.id.rl_member_menu:
                 Toast.makeText(MainActivity.this, "menu", Toast.LENGTH_SHORT).show();
@@ -290,6 +305,30 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
                 bundle.putString("text", "文件");
                 StartActivity.startActivity(MainActivity.this, SwipeBackDemoActivity.class, bundle);
                 break;
+            case R.id.tv_setting_menu:
+                Toast.makeText(MainActivity.this, "setting", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_logout_menu:
+                logout();
+                Toast.makeText(MainActivity.this, "logout", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        //关闭侧滑菜单
+        closeNavigationView();
+    }
+
+    //注销
+    private void logout() {
+        PrefUtils.setBoolean(this, AppConst.IS_LOGIN_KEY, false);
+        PrefUtils.clearData(UIUtils.getContext(), AppConst.USERNAME_KEY);
+        if (dlMain.isDrawerOpen(nav)) {
+            tvNameMenu.setText("这里是名字");
+        }
+    }
+
+    private void closeNavigationView() {
+        if (dlMain.isDrawerOpen(nav)) {
+            dlMain.closeDrawer(nav);
         }
     }
 

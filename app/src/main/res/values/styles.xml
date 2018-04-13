@@ -90,4 +90,11 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!--线样式-->
+    <style name="lineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1.5px</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
 </resources>

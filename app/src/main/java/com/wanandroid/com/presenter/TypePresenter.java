@@ -30,7 +30,7 @@ import java.util.List;
  * date: 2018/4/2.
  */
 
-public class TypePresent extends BasePresenter<TypeView> {
+public class TypePresenter extends BasePresenter<TypeView> {
 
 
     private TypeView mTypeView;
@@ -44,7 +44,7 @@ public class TypePresent extends BasePresenter<TypeView> {
     private int mId;
     private FragmentActivity mActivity;
 
-    public TypePresent(FragmentActivity mActivity) {
+    public TypePresenter(FragmentActivity mActivity) {
         this.mActivity = mActivity;
     }
 
