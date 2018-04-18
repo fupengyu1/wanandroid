@@ -88,12 +88,13 @@ public class UserFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        ImmersionBar.setTitleBar(getActivity(), toolbar);
     }
 
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
+
+        ImmersionBar.setTitleBar(getActivity(), toolbar);
 
         if (PrefUtils.getBoolean(getContext(), AppConst.IS_LOGIN_KEY, false) == false) {
 //                    tvLogou.setText("点击登录");
@@ -102,7 +103,6 @@ public class UserFragment extends BaseFragment {
             userNickname.setText(PrefUtils.getString(getContext(), AppConst.USERNAME_KEY, "点击登录"));
 //                    tvLogou.setText("退出登录");
         }
-
 
         final RefreshLayout refreshLayout = (RefreshLayout) rootView.findViewById(R.id.refreshLayout);
         //设置 Header 为 贝塞尔雷达 样式
@@ -196,9 +196,7 @@ public class UserFragment extends BaseFragment {
             case R.id.tv_user_zuji:
                 break;
             case R.id.iv_user_menu:
-
                 userFragmentListener.showNavigationView();
-
                 break;
             case R.id.user_nickname:
                 StartActivity.startActivity(getActivity(), LoginActivity.class, null);

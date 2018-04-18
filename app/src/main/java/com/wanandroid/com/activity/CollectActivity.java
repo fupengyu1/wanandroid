@@ -13,12 +13,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 import com.chad.library.adapter.base.listener.OnItemDragListener;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
-import com.orhanobut.logger.Logger;
 import com.wanandroid.com.R;
 import com.wanandroid.com.adapter.CollectArticleAdapter;
 import com.wanandroid.com.base.BaseSwipeBackActivity;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.presenter.CollectPresenter;
+import com.wanandroid.com.utils.LoadingUtils;
 import com.wanandroid.com.view.CollectView;
 import com.wanandroid.com.widget.IconFontTextView;
 
@@ -99,31 +99,20 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
         mAdapter.setOnItemSwipeListener(new OnItemSwipeListener() {
             @Override
             public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
-                Logger.e("onItemSwipeStart");
 
                 viewHolder.itemView.getId();
             }
 
             @Override
             public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
-                Logger.e("clearView");
             }
 
             @Override
             public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
-                Logger.e("onItemSwiped");
             }
 
             @Override
             public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
-                Logger.e("onItemSwipeMoving   viewHolder.itemView.getId() == " + viewHolder.getItemId());
-
-
-//                Logger.e("dx == " + dX + ", dy == " + dY);
-//                if(dX >= 120) {
-//                    dX = 120;
-//                }
-
 
             }
         });
@@ -133,6 +122,7 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     @Override
     public void onRefresh() {
+        LoadingUtils.showLoadingView(this, "正在加载中...");
         mPresenter.getRefreshData();
     }
 
@@ -179,6 +169,9 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     @Override
     public void loadComplete() {
+
+        LoadingUtils.hideLoadingView();
+
         showSwipeRefresh(false);
     }
 

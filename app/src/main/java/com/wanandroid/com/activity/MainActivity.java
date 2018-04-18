@@ -22,6 +22,7 @@ import com.wanandroid.com.base.BasePresenter;
 import com.wanandroid.com.fragment.HomeFragment;
 import com.wanandroid.com.fragment.TypeFragment;
 import com.wanandroid.com.fragment.UserFragment;
+import com.wanandroid.com.utils.MyViewPager;
 import com.wanandroid.com.utils.PrefUtils;
 import com.wanandroid.com.utils.StartActivity;
 import com.wanandroid.com.utils.UIUtils;
@@ -39,7 +40,7 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements HomeFragmentListener, TypeFragmentListener, UserFragmentListener {
 
     @Bind(R.id.main_viewpager)
-    ViewPager mainViewpager;
+    MyViewPager mainViewpager;
     @Bind(R.id.ll_main_bottom)
     LinearLayout llMainBottom;
     @Bind(R.id.mian_tab_1)
@@ -119,8 +120,12 @@ public class MainActivity extends BaseActivity implements HomeFragmentListener, 
     public void initView() {
         super.initView();
 
+        //设置viewpager是否可以滑动
+        mainViewpager.setPagingEnabled(true);
+
         setTabColor(mianTab1, ivMain1);
 
+        //设置侧边栏名字
         if (PrefUtils.getBoolean(this, AppConst.IS_LOGIN_KEY, false) == false) {
             tvNameMenu.setText("这里是名字");
         } else {

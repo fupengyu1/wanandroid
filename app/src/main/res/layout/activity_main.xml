@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
+        <com.wanandroid.com.utils.MyViewPager
             android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -109,6 +109,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!--侧边栏-->
     <android.support.design.widget.NavigationView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav"
         android:layout_width="wrap_content"

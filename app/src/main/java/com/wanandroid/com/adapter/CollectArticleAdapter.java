@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.orhanobut.logger.Logger;
 import com.wanandroid.com.R;
 import com.wanandroid.com.activity.BannerActivity;
 import com.wanandroid.com.api.WanService;
@@ -68,17 +70,18 @@ public class CollectArticleAdapter extends BaseItemDraggableAdapter<ArticleBean,
     }
 
     private void unCollectArticler(int position, ArticleBean bean) {
-        WanService.unCollectArticle(bean.getId(),bean.getOriginId(),true)
+        WanService.unCollectArticle(bean.getId(), bean.getOriginId(), true)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
                 .subscribe(new RxObserver<String>() {
                     @Override
                     public void _onNext(String s) {
 //                        T.showShort(mContext, "取消收藏");
+                        Toast.makeText(mContext, "取消收藏", Toast.LENGTH_SHORT).show();
                         getData().remove(position);
-                        if (position != 0){
+                        if (position != 0) {
                             notifyItemRemoved(position);
-                        }else{
+                        } else {
                             notifyDataSetChanged();
                         }
                     }
@@ -86,6 +89,13 @@ public class CollectArticleAdapter extends BaseItemDraggableAdapter<ArticleBean,
                     @Override
                     public void _onError(String errorMessage) {
 //                        T.showShort(mContext, "取消收藏失败");
+                        getData().remove(position);
+                        if (position != 0) {
+                            notifyItemRemoved(position);
+                        } else {
+                            notifyDataSetChanged();
+                        }
+                        Logger.e("errorMessage == " + errorMessage);
                     }
                 });
     }

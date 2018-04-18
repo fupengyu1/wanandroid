@@ -15,6 +15,7 @@ import com.wanandroid.com.base.BaseFragment;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.presenter.TypePresenter;
 import com.wanandroid.com.utils.AutoLinefeedLayout;
+import com.wanandroid.com.utils.LoadingUtils;
 import com.wanandroid.com.utils.UIUtils;
 import com.wanandroid.com.view.TypeView;
 import com.wanandroid.com.view.myinterface.TypeFragmentListener;
@@ -81,6 +82,9 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresenter> implemen
 
     }
 
+    /**
+     * 底部tablebar颜色
+     */
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
@@ -113,21 +117,21 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresenter> implemen
     @Override
     public void getDataError(String message) {
         //关闭Loading动画
-//        LoadingUtils.hideLoadingView();
+        LoadingUtils.hideLoadingView();
         Snackbar.make(rcvType, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void getRefreshDataSuccess(List<ArticleBean> data) {
         //关闭Loading动画
-//        LoadingUtils.hideLoadingView();
+        LoadingUtils.hideLoadingView();
         homePageAdapter.setNewData(data);
     }
 
     @Override
     public void getMoreDataSuccess(List<ArticleBean> data) {
         //关闭Loading动画
-//        LoadingUtils.hideLoadingView();
+        LoadingUtils.hideLoadingView();
         if (data.size() != 0) {
             homePageAdapter.addData(data);
             homePageAdapter.loadMoreComplete();
@@ -140,7 +144,7 @@ public class TypeFragment extends BaseFragment<TypeView, TypePresenter> implemen
     public void onDestroyView() {
 
         //关闭Loading动画
-//        LoadingUtils.hideLoadingView();
+        LoadingUtils.hideLoadingView();
 
         super.onDestroyView();
         ButterKnife.unbind(this);
