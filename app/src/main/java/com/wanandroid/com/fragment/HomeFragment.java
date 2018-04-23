@@ -372,9 +372,9 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
-        mImmersionBar.statusBarColorTransformEnable(false)
-                .navigationBarColor(R.color.colorPrimary)
-                .init();
+//        mImmersionBar.statusBarColorTransformEnable(false)
+//                .navigationBarColor(R.color.colorPrimary)
+//                .init();
 
 //        mImmersionBar.statusBarDarkFont(true, 0.2f)
 //                .navigationBarColor(R.color.btn3)
