@@ -56,11 +56,10 @@ public class CommonPresenter extends BasePresenter<CommonView> {
                             Manifest.permission.READ_EXTERNAL_STORAGE},
                     READ_EXTERNAL_STORAGE);
         } else {
-            images = getLatestPhotoPaths(activity, 9);
+            images = getLatestPhotoPaths(activity, 9999);
             getView().getLocalPicUrlListSuccess(images);
         }
     }
-
 
     /**
      * 使用ContentProvider读取SD卡最近图片

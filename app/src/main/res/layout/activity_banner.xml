@@ -14,7 +14,7 @@
         android:gravity="bottom"
         app:contentInsetStart="0dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/appbar_banner"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -34,12 +34,14 @@
                 android:id="@+id/tv_title_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingRight="40dp"
+                android:paddingLeft="40dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 app:layout_scrollFlags="scroll|enterAlways" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 

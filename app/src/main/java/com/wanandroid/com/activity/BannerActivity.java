@@ -5,8 +5,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wanandroid.com.R;
@@ -27,7 +27,7 @@ public class BannerActivity extends BaseSwipeBackActivity<CommonWebView, WebView
     @Bind(R.id.tv_title_banner)
     TextView tvTitleBanner;
     @Bind(R.id.appbar_banner)
-    LinearLayout appbarBanner;
+    RelativeLayout appbarBanner;
     @Bind(R.id.iv_back_banner)
     ImageView ivBackBanner;
 

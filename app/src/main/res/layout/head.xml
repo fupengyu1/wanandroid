@@ -2,16 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/chuck_status_300"
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
+    <!--<ImageView-->
+        <!--android:id="@+id/person"-->
+        <!--android:layout_width="72dp"-->
+        <!--android:layout_height="72dp"-->
+        <!--android:layout_marginTop="42dp"-->
+        <!--android:src="@mipmap/head" />-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/person"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="42dp"
-        android:src="@mipmap/head" />
+        android:src="@mipmap/head"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_overlay="true"
+        app:civ_border_width="0dp" />
 
     <TextView
         android:id="@+id/tv_name_menu"
