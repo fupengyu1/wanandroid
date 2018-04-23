@@ -131,7 +131,6 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     }
 
-
     @OnClick(R.id.tv_return)
     public void onViewClicked() {
         finish();
@@ -139,6 +138,7 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     @Override
     public void onRefreshSuccess(List<ArticleBean> data) {
+        LoadingUtils.hideLoadingView();
         showSwipeRefresh(false);
         mAdapter.setNewData(data);
         tvNoCollect.setVisibility(data.size() == 0 ? View.VISIBLE : View.GONE);
@@ -146,12 +146,14 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     @Override
     public void onRefreshFail(String errorString) {
+        LoadingUtils.hideLoadingView();
         showSwipeRefresh(false);
         Snackbar.make(rvContent, errorString, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoadMoreSuccess(List<ArticleBean> data) {
+        LoadingUtils.hideLoadingView();
         if (data.size() == 0) {
             mAdapter.loadMoreEnd();
         } else {
@@ -162,6 +164,7 @@ public class CollectActivity extends BaseSwipeBackActivity<CollectView, CollectP
 
     @Override
     public void onLoadMoreFail(String errorString) {
+        LoadingUtils.hideLoadingView();
         showSwipeRefresh(false);
         mAdapter.loadMoreComplete();
         Snackbar.make(rvContent, errorString, Snackbar.LENGTH_SHORT).show();

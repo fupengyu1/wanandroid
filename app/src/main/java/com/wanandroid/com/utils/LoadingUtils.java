@@ -31,7 +31,7 @@ public class LoadingUtils {
         AVLoadingIndicatorView avLoadingIndicatorView = (AVLoadingIndicatorView) view.findViewById(R.id.AVLoadingIndicatorView);
         TextView id_tv_loading_dialog_text = (TextView) view.findViewById(R.id.id_tv_loading_dialog_text);
 
-        dialog = new Dialog(activity);
+        dialog = new Dialog(activity,R.style.loadingutils);
         dialog.setCancelable(false);
         dialog.setContentView(view, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
