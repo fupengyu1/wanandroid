@@ -1,17 +1,22 @@
 package com.wanandroid.com.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.sackcentury.shinebuttonlib.ShineButton;
 import com.wanandroid.com.R;
 import com.wanandroid.com.activity.BannerActivity;
+import com.wanandroid.com.activity.MainActivity;
 import com.wanandroid.com.model.pojo.ArticleBean;
 import com.wanandroid.com.view.myinterface.HomeAdapterClickListener;
 
@@ -44,6 +49,17 @@ public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
         TextView tv_item_auth0r = helper.getView(R.id.tv_item_auth0r);
         TextView tv_item_title = helper.getView(R.id.tv_item_title);
         TextView tv_item_shoucang = helper.getView(R.id.tv_item_shoucang);
+
+        //收藏动画
+        ShineButton po_image2 = helper.getView(R.id.po_image2);
+        po_image2.init((Activity) this.mContext);
+
+//        if(item.isCollect() == true) {
+//            po_image2.setChecked(true,false);
+//        }else {
+//            po_image2.setChecked(false);
+//        }
+
         tv_item_auth0r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +72,13 @@ public class HomePageAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolde
             public boolean onLongClick(View view) {
                 Toast.makeText(mContext, item.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
+            }
+        });
+
+        po_image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeAdapterClickListener.onShouCangClickListener(item);
             }
         });
 

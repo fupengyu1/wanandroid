@@ -109,6 +109,8 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
         super.initView(rootView);
 
         rcvHome.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //收藏按钮点击事件
         homePageAdapter = new HomePageAdapter(getContext(), null, new HomeAdapterClickListener() {
             @Override
             public void onShouCangClickListener(ArticleBean item) {

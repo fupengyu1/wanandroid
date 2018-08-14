@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\toolsclass\WanAndroid\SwipeBackLibrary\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="F:\toolsclass\WanAndroid\SwipeBackLibrary\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\AScode\AS3.0\wanandroid-master\SwipeBackLibrary\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\AScode\AS3.0\wanandroid-master\SwipeBackLibrary\src\debug\jniLibs"/></dataSet></merger>

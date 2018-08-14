@@ -25,6 +25,12 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -107,4 +113,7 @@ dependencies {
     //    compile 'com.android.support:design:25.3.1'//版本随意（非必须，引用可以解决无法预览问题）
     implementation project(':SwipeBackLibrary')
     implementation project(':Transferee')
+
+    //点赞效果
+    compile 'com.sackcentury:shinebutton:0.2.0'
 }
